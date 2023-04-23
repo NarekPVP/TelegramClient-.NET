@@ -5,12 +5,6 @@ namespace TelegramAPI
 {
     public class TelegramClient : IDisposable
     {
-        /*
-         curl
-        -X POST "https://api.telegram.org/bot<your_bot_token>/auth/sendCode"
-        -d "phone_number=<your_phone_number>&amp;settings={\"is_bot\":false,\"allow_flashcall\":false,\"current_number\":\"\",\"api_id\":<your_api_id>,\"api_hash\":\"<your_api_hash>\",\"lang_code\":\"en\"}"
-         */
-
         public string ClientName { get; private set; }
         public string? ApiHash { get; private set; }
         public int? ApiId { get; private set; }
@@ -18,7 +12,6 @@ namespace TelegramAPI
         public string? Phone { get; private set; }
 
         private bool disposed = false;
-
         private const string ApiUrl = "https://my.telegram.org";
 
         public TelegramClient(string clientName)
