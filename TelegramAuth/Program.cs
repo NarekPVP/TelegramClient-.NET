@@ -6,20 +6,20 @@ public class Program
 {
     static async Task Main(string[] args)
     {
-        TelegramClient client = new TelegramClient(
-            clientName: Guid.NewGuid().ToString(),
-            apiHash: "608684bc8defbee867c2cfc12b798c9f",
-            apiId: 21688496);
+        string clientName = Guid.NewGuid().ToString();
+        const string apiHash = "608684bc8defbee867c2cfc12b798c9f";
+        const int apiId = 21688496;
 
-        Console.WriteLine(client);
+        using(TelegramClient client = new TelegramClient(clientName: Guid.NewGuid().ToString(), apiHash, apiId))
+        {
+            Console.WriteLine(client);
+            await Console.Out.WriteLineAsync();
 
-        await Start(client);
 
-        client.Dispose();
-    }
+            await Console.Out.WriteAsync("Enter phone number: ");
+            string phone = Console.ReadLine();
 
-    static async Task Start(TelegramClient client)
-    {
-        await client.Init();
+            await client.Start(phone);
+        }
     }
 }
